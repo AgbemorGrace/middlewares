@@ -4,10 +4,11 @@ deleteuser,
 getuser,
 getusers,
 updateuser} = require("../controllers/users.conttroller");
+const {pathMiddleware}= require ("../middlewares/pathMiddleware")
 
 const userRouter = router();
 
-userRouter.route("/").get(getusers).post(createuser);
+userRouter.route("/").get(pathMiddleware, getusers).post(createuser);
 userRouter.route("/:userId")
 .get(getuser)
 .patch(updateuser)
